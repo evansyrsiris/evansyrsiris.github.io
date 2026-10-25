@@ -1,0 +1,837 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>evan's webpage</title>
+<style>
+:root {
+  --paper: #eeede5;
+  --ink: #292d29;
+  --muted: #777b70;
+  --line: #c9c8bb;
+  --link: #315e51;
+  --panel: #e5e4da;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 15px/1.55 "Courier New", Courier, monospace;
+}
+a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+a:hover { background: #d8dfd4; }
+header, main, footer {
+  width: min(960px, calc(100% - 28px));
+  margin: 0 auto;
+}
+header { padding: 27px 0 14px; }
+.topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+h1 {
+  font-size: clamp(24px, 4vw, 38px);
+  font-weight: normal;
+  letter-spacing: -2px;
+  margin: 19px 0 2px;
+}
+.tagline { margin: 0 0 19px; color: var(--muted); }
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 17px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 10px 0;
+}
+nav a { font-size: 14px; }
+nav a.active {
+  font-weight: bold;
+  text-decoration-thickness: 2px;
+}
+main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  gap: 34px;
+  padding: 26px 0 45px;
+  min-height: 470px;
+}
+h2 {
+  font-size: 19px;
+  font-weight: normal;
+  margin: 0 0 7px;
+}
+.intro {
+  color: #555b52;
+  margin: 0 0 24px;
+  max-width: 650px;
+}
+.section-label {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+.post {
+  border-top: 1px solid var(--line);
+  padding: 14px 0 17px;
+}
+.post-meta {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+.post-title {
+  display: inline-block;
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+.post-excerpt {
+  margin: 0;
+  color: #565a52;
+  font-size: 14px;
+}
+.sidebar {
+  border-left: 1px solid var(--line);
+  padding-left: 19px;
+}
+.sidebox { margin-bottom: 25px; }
+.sidebox p {
+  font-size: 13px;
+  color: #555b52;
+  margin: 7px 0;
+}
+.status {
+  border: 1px dashed #aaa99d;
+  padding: 10px;
+  background: #e8e7dd;
+}
+.tiny { color: var(--muted); font-size: 11px; }
+footer {
+  border-top: 1px solid var(--line);
+  padding: 13px 0 26px;
+  color: var(--muted);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.article-body { overflow-wrap: anywhere; }
+.article-body h1,
+.article-body h2,
+.article-body h3 {
+  letter-spacing: 0;
+  margin: 1em 0 .3em;
+}
+.article-body p { margin: .7em 0; }
+.article-body blockquote {
+  border-left: 2px solid #aead9f;
+  margin-left: 0;
+  padding-left: 13px;
+  color: #5e6259;
+}
+.article-body pre {
+  background: #e2e1d7;
+  padding: 10px;
+  overflow-x: auto;
+}
+.article-body code {
+  background: #e2e1d7;
+  padding: 1px 3px;
+}
+.article-body pre code { padding: 0; }
+.article-body img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+}
+.article-body ul,
+.article-body ol { padding-left: 25px; }
+.article-body hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 1.5em 0;
+}
+.empty {
+  color: var(--muted);
+  border: 1px dashed var(--line);
+  padding: 15px;
+}
+@media (max-width: 700px) {
+  main {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .sidebar {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding: 18px 0 0;
+  }
+  footer { flex-direction: column; }
+  .topline { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="topline">
+    <span>PERSONAL WEBSPACE / EST. 2026</span>
+    <span id="clock">somewhere on the internet</span>
+  </div>
+
+  <h1>
+    <a href="#home" id="home-link"
+       style="color:inherit;text-decoration:none">
+      evan's homepage
+    </a>
+  </h1>
+
+  <p class="tagline">"A place to dump thoughts."</p>
+
+  <nav id="nav">
+    <a href="#home" data-section="home" class="active">home</a>
+    <a href="#tech" data-section="Tech">tech</a>
+    <a href="#studies" data-section="Studies">studies</a>
+    <a href="#personal-thoughts" data-section="Personal Thoughts">personal thoughts</a>
+    <a href="#projects" data-section="Projects">projects</a>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <div id="content">
+      <div class="empty">Loading entries...</div>
+    </div>
+  </section>
+
+  <aside class="sidebar">
+    <div class="sidebox">
+      <div class="section-label">A LITTLE ABOUT THIS PLACE</div>
+      <p>
+        A personal archive for things I make, things I learn,
+        and things I don't want to forget.
+      </p>
+    </div>
+
+    <div class="sidebox status">
+      <div class="section-label">CURRENT STATUS</div>
+      <p>probably coding something</p>
+      <p class="tiny">last updated: whenever I remember</p>
+    </div>
+
+    <div class="sidebox">
+      <div class="section-label">AROUND HERE</div>
+      <p><a href="#tech" data-jump="Tech">technical notes</a></p>
+      <p><a href="#studies" data-jump="Studies">things I'm learning</a></p>
+      <p><a href="#personal-thoughts" data-jump="Personal Thoughts">loose thoughts</a></p>
+      <p><a href="#projects" data-jump="Projects">works in progress</a></p>
+    </div>
+  </aside>
+</main>
+
+<footer>
+  <span>Contact me: vaggelissyrsiris@gmail.com</span>
+  <span><a href="#home">back to top ↑</a></span>
+</footer>
+
+<script>
+"use strict";
+
+const sectionFolders = [
+  { name: "Tech", slug: "tech" },
+  { name: "Studies", slug: "studies" },
+  { name: "Personal Thoughts", slug: "personal-thoughts" },
+  { name: "Projects", slug: "projects" }
+];
+
+let posts = [];
+let currentSection = "home";
+
+const $ = id => document.getElementById(id);
+
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
+}
+
+/*
+ * Resolve a Markdown image path relative to the Markdown file.
+ *
+ * Example:
+ * Markdown file: entries/tech/linux.md
+ * Image path:    images/desktop.png
+ * Resolved path: entries/tech/images/desktop.png
+ */
+function resolveImageUrl(url, postFile) {
+  try {
+    const imageUrl = new URL(
+      url,
+      new URL(postFile, document.baseURI)
+    );
+
+    // Only allow regular web URLs.
+    if (
+      imageUrl.protocol !== "http:" &&
+      imageUrl.protocol !== "https:"
+    ) {
+      return null;
+    }
+
+    return imageUrl.href;
+  } catch {
+    return null;
+  }
+}
+
+function inlineMd(value, postFile) {
+  let s = escapeHtml(value);
+
+  // Inline code
+  s = s.replace(/`([^`]+)`/g, "<code>$1</code>");
+
+  // Bold and italic
+  s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  s = s.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+
+  // Markdown links: external HTTP(S) links only
+  s = s.replace(
+    /\[([^\]]+)\]\((https?:\/\/[^ )]+)\)/g,
+    '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
+  );
+
+  // Images: relative paths resolved from the Markdown file,
+  // or absolute HTTP(S) URLs.
+  s = s.replace(
+    /!\[([^\]]*)\]\(([^ )]+)\)/g,
+    (match, alt, url) => {
+      /*
+       * escapeHtml() above changes & to &amp;.
+       * Restore it before URL resolution so query strings work.
+       */
+      const source = url
+        .replace(/&amp;/g, "&")
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">");
+
+      const resolvedUrl = resolveImageUrl(source, postFile);
+
+      if (!resolvedUrl) return match;
+
+      return `<img src="${escapeHtml(resolvedUrl)}" alt="${alt}">`;
+    }
+  );
+
+  return s;
+}
+
+function markdownToHtml(markdown, postFile) {
+  const lines = String(markdown || "")
+    .replace(/\r/g, "")
+    .split("\n");
+
+  const out = [];
+  let inList = false;
+  let listType = "";
+  let inCode = false;
+  let codeLines = [];
+
+  function closeList() {
+    if (inList) {
+      out.push(`</${listType}>`);
+      inList = false;
+      listType = "";
+    }
+  }
+
+  function flushCode() {
+    out.push(
+      "<pre><code>" +
+      escapeHtml(codeLines.join("\n")) +
+      "</code></pre>"
+    );
+    codeLines = [];
+    inCode = false;
+  }
+
+  for (const line of lines) {
+    if (line.trim().startsWith("```")) {
+      closeList();
+
+      if (!inCode) {
+        inCode = true;
+        codeLines = [];
+      } else {
+        flushCode();
+      }
+
+      continue;
+    }
+
+    if (inCode) {
+      codeLines.push(line);
+      continue;
+    }
+
+    const heading = line.match(/^(#{1,3})\s+(.*)$/);
+
+    if (heading) {
+      closeList();
+      const level = heading[1].length;
+
+      out.push(
+        `<h${level}>${inlineMd(heading[2], postFile)}</h${level}>`
+      );
+
+      continue;
+    }
+
+    if (/^\s*---+\s*$/.test(line)) {
+      closeList();
+      out.push("<hr>");
+      continue;
+    }
+
+    const quote = line.match(/^>\s?(.*)$/);
+
+    if (quote) {
+      closeList();
+      out.push(
+        `<blockquote>${inlineMd(quote[1], postFile)}</blockquote>`
+      );
+      continue;
+    }
+
+    const unordered = line.match(/^\s*[-*]\s+(.*)$/);
+    const ordered = line.match(/^\s*\d+\.\s+(.*)$/);
+
+    if (unordered || ordered) {
+      const type = unordered ? "ul" : "ol";
+
+      if (inList && listType !== type) closeList();
+
+      if (!inList) {
+        out.push(`<${type}>`);
+        inList = true;
+        listType = type;
+      }
+
+      out.push(
+        `<li>${inlineMd((unordered || ordered)[1], postFile)}</li>`
+      );
+
+      continue;
+    }
+
+    closeList();
+
+    if (!line.trim()) continue;
+
+    out.push(`<p>${inlineMd(line, postFile)}</p>`);
+  }
+
+  closeList();
+
+  if (inCode) flushCode();
+
+  return out.join("\n");
+}
+
+function dateLabel(date) {
+  return date ? date.replaceAll("-", ".") : "undated";
+}
+
+function sectionSlug(section) {
+  const found = sectionFolders.find(item => item.name === section);
+
+  return found
+    ? found.slug
+    : String(section).toLowerCase().replaceAll(" ", "-");
+}
+
+function sectionFromSlug(slug) {
+  return sectionFolders.find(item => item.slug === slug)?.name || null;
+}
+
+function getPostById(id) {
+  return posts.find(post => post.id === id);
+}
+
+async function loadPosts() {
+  try {
+    // Fetch the explicit list of Markdown files.
+    const response = await fetch("entries/index.json");
+
+    if (!response.ok) {
+      throw new Error(
+        `entries/index.json returned HTTP ${response.status}`
+      );
+    }
+
+    const files = await response.json();
+
+    if (!Array.isArray(files)) {
+      throw new Error(
+        "entries/index.json must contain an array of file paths."
+      );
+    }
+
+    const loadedPosts = await Promise.all(
+      files.map(async entry => {
+        if (
+          typeof entry !== "string" ||
+          !entry.toLowerCase().endsWith(".md")
+        ) {
+          console.warn("Skipping invalid Markdown entry:", entry);
+          return null;
+        }
+
+        const file = entry.replace(/^\/+/, "");
+        const parts = file.split("/");
+        const section = sectionFromSlug(parts[0]);
+
+        // Do not allow paths outside the known section folders.
+        if (
+          !section ||
+          file.includes("..") ||
+          file.includes("\\") ||
+          parts.length < 2
+        ) {
+          console.warn("Skipping invalid path:", entry);
+          return null;
+        }
+
+        const fileUrl =
+          "entries/" +
+          parts.map(encodeURIComponent).join("/");
+
+        try {
+          const fileResponse = await fetch(fileUrl);
+
+          if (!fileResponse.ok) {
+            console.error(
+              `Could not load ${fileUrl}: HTTP ${fileResponse.status}`
+            );
+            return null;
+          }
+
+          const markdown = await fileResponse.text();
+          const filename = parts[parts.length - 1];
+
+          const titleMatch = markdown.match(/^#\s+(.+)$/m);
+
+          const title = titleMatch
+            ? titleMatch[1].trim()
+            : filename
+                .replace(/\.md$/i, "")
+                .replaceAll("-", " ");
+
+          const firstPara = markdown.split("\n").find(line => {
+            const trimmed = line.trim();
+
+            return trimmed &&
+              !trimmed.startsWith("#") &&
+              !trimmed.startsWith(">") &&
+              !trimmed.startsWith("```") &&
+              !trimmed.startsWith("- ") &&
+              !/^date:/.test(trimmed);
+          });
+
+          const summary = firstPara
+            ? firstPara
+                .replace(/[*_`]/g, "")
+                .trim()
+                .slice(0, 140)
+            : "";
+
+          // Optional metadata line: date: 2026-10-15
+          const dateMatch = markdown.match(
+            /^date:\s*(\d{4}-\d{2}-\d{2})\s*$/m
+          );
+
+          // Folder-prefixed IDs avoid filename collisions.
+          const id = file.replace(/\.md$/i, "");
+
+          return {
+            id,
+            title,
+            section,
+            date: dateMatch ? dateMatch[1] : "",
+            summary,
+            markdown: markdown.replace(
+              /^date:\s*\d{4}-\d{2}-\d{2}\s*\n?/m,
+              ""
+            ),
+            file: fileUrl
+          };
+        } catch (error) {
+          console.error(`Could not load ${fileUrl}:`, error);
+          return null;
+        }
+      })
+    );
+
+    posts = loadedPosts.filter(Boolean);
+    render();
+    handleRoute();
+
+  } catch (error) {
+    console.error("Failed to load posts:", error);
+
+    $("content").innerHTML =
+      '<div class="empty">' +
+      'Could not load entries. Check that you are using a local web server ' +
+      'and that entries/index.json exists and contains valid JSON.' +
+      '</div>';
+  }
+}
+
+function render() {
+  const content = $("content");
+
+  const filtered = currentSection === "home"
+    ? posts
+    : posts.filter(post => post.section === currentSection);
+
+  const descriptions = {
+    home:
+      "A place for things I've seen, things I've made, and things I don't want to forget.",
+    "Tech":
+      "Computers, software, systems, experiments, and technical notes.",
+    "Studies":
+      "Mathematics, physics, university, and the process of figuring things out.",
+    "Personal Thoughts":
+      "Loose thoughts, memories, observations, and things that don't fit anywhere else.",
+    "Projects":
+      "Things in progress. Some finished, some not, all worth making."
+  };
+
+  const heading = currentSection === "home"
+    ? "Hello, world."
+    : currentSection;
+
+  content.replaceChildren();
+
+  const label = document.createElement("div");
+  label.className = "section-label";
+  label.textContent = currentSection === "home"
+    ? "WELCOME, INTERNET STRANGER"
+    : "/ " + sectionSlug(currentSection).toUpperCase();
+
+  const title = document.createElement("h2");
+  title.textContent = heading;
+
+  const intro = document.createElement("p");
+  intro.className = "intro";
+  intro.textContent = descriptions[currentSection] || "";
+
+  content.append(label, title, intro);
+
+  if (!filtered.length) {
+    const empty = document.createElement("div");
+    empty.className = "empty";
+    empty.textContent = currentSection === "home"
+      ? "Nothing here yet..."
+      : "Nothing here yet..";
+
+    content.appendChild(empty);
+    return;
+  }
+
+  filtered
+    .slice()
+    .sort((a, b) => (b.date || "").localeCompare(a.date || ""))
+    .forEach(post => {
+      const item = document.createElement("article");
+      item.className = "post";
+
+      const meta = document.createElement("div");
+      meta.className = "post-meta";
+      meta.textContent =
+        `${dateLabel(post.date)}  /  ${post.section}`;
+
+      const link = document.createElement("a");
+      link.className = "post-title";
+      link.href = "#post-" + encodeURIComponent(post.id);
+      link.textContent = post.title;
+
+      link.addEventListener("click", event => {
+        event.preventDefault();
+
+        history.pushState(
+          null,
+          "",
+          "#post-" + encodeURIComponent(post.id)
+        );
+
+        showArticle(post.id);
+      });
+
+      const excerpt = document.createElement("p");
+      excerpt.className = "post-excerpt";
+      excerpt.textContent = post.summary;
+
+      item.append(meta, link, excerpt);
+      content.appendChild(item);
+    });
+}
+
+function showArticle(id) {
+  const post = getPostById(id);
+
+  if (!post) {
+    render();
+
+    const message = document.createElement("div");
+    message.className = "empty";
+    message.textContent =
+      "That article could not be found. Check entries/index.json.";
+
+    $("content").appendChild(message);
+    return;
+  }
+
+  currentSection = post.section;
+  updateActiveNav();
+
+  const content = $("content");
+  content.replaceChildren();
+
+  const label = document.createElement("div");
+  label.className = "section-label";
+
+  const back = document.createElement("a");
+  back.href = "#" + sectionSlug(post.section);
+  back.textContent = `← ${post.section}`;
+
+  back.addEventListener("click", event => {
+    event.preventDefault();
+
+    history.pushState(null, "", back.href);
+    currentSection = post.section;
+    render();
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  label.append(
+    back,
+    document.createTextNode(" / " + dateLabel(post.date))
+  );
+
+  const title = document.createElement("h2");
+  title.textContent = post.title;
+
+  const intro = document.createElement("p");
+  intro.className = "intro";
+  intro.textContent = post.summary;
+
+  const body = document.createElement("div");
+  body.className = "article-body";
+
+  // Pass the Markdown file path so its relative image paths work.
+  body.innerHTML = markdownToHtml(post.markdown, post.file);
+
+  content.append(label, title, intro, body);
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function updateActiveNav() {
+  document.querySelectorAll("#nav a").forEach(link => {
+    link.classList.toggle(
+      "active",
+      link.dataset.section === currentSection
+    );
+  });
+}
+
+function navigate(section) {
+  currentSection = section;
+  updateActiveNav();
+  render();
+}
+
+function handleRoute() {
+  const hash = window.location.hash || "#home";
+
+  if (hash.startsWith("#post-")) {
+    const id = decodeURIComponent(hash.slice("#post-".length));
+    showArticle(id);
+    return;
+  }
+
+  const slug = hash.slice(1);
+
+  if (slug === "home" || !slug) {
+    navigate("home");
+    return;
+  }
+
+  const section = sectionFromSlug(slug);
+
+  if (section) navigate(section);
+  else navigate("home");
+}
+
+document.querySelectorAll("#nav a").forEach(link => {
+  link.addEventListener("click", event => {
+    event.preventDefault();
+
+    history.pushState(null, "", link.getAttribute("href"));
+    handleRoute();
+  });
+});
+
+document.querySelectorAll("[data-jump]").forEach(link => {
+  link.addEventListener("click", event => {
+    event.preventDefault();
+
+    const section = link.dataset.jump;
+
+    history.pushState(
+      null,
+      "",
+      "#" + sectionSlug(section)
+    );
+
+    navigate(section);
+  });
+});
+
+$("home-link").addEventListener("click", event => {
+  event.preventDefault();
+
+  history.pushState(null, "", "#home");
+  navigate("home");
+});
+
+window.addEventListener("popstate", handleRoute);
+window.addEventListener("hashchange", handleRoute);
+
+$("clock").textContent = new Date().toLocaleDateString(undefined, {
+  weekday: "short",
+  month: "short",
+  day: "numeric",
+  year: "numeric"
+});
+
+loadPosts();
+</script>
+</body>
+</html>
