@@ -17,3 +17,5 @@ I dont think there is a single show that can replicate the hype one feels when w
 
 ## Summary
 Initial D is a show that has some really deep themes hidden behind quite bad writing, and also features an uncanny ability to cause insane hype for its important scenes, that not even 10/10 shows can replicate. 
+
+
