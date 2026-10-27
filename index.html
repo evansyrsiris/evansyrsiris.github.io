@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -201,7 +200,7 @@ footer {
     <a href="#home" data-section="home" class="active">home</a>
     <a href="#tech" data-section="Tech">tech</a>
     <a href="#studies" data-section="Studies">studies</a>
-    <a href="#personal thoughts" data-section="Personal Thoughts">personal thoughts</a>
+    <a href="#personal-thoughts" data-section="Personal Thoughts">personal thoughts</a>
     <a href="#projects" data-section="Projects">projects</a>
   </nav>
 </header>
@@ -232,7 +231,7 @@ footer {
       <div class="section-label">AROUND HERE</div>
       <p><a href="#tech" data-jump="Tech">technical notes</a></p>
       <p><a href="#studies" data-jump="Studies">things I'm learning</a></p>
-      <p><a href="#personal thoughts" data-jump="Personal Thoughts">loose thoughts</a></p>
+      <p><a href="#personal-thoughts" data-jump="Personal Thoughts">loose thoughts</a></p>
       <p><a href="#projects" data-jump="Projects">works in progress</a></p>
     </div>
   </aside>
@@ -249,7 +248,7 @@ footer {
 const sectionFolders = [
   { name: "Tech", slug: "tech" },
   { name: "Studies", slug: "studies" },
-  { name: "Personal Thoughts", slug: "personal thoughts" },
+  { name: "Personal Thoughts", slug: "personal-thoughts" },
   { name: "Projects", slug: "projects" }
 ];
 
@@ -259,7 +258,7 @@ let currentSection = "home";
 const $ = id => document.getElementById(id);
 
 function escapeHtml(value) {
-  return String(value ?? "").replace(/[&<>"']/g, char => ({
+  return String(value ?? "").replace(/[&<>\"']/g, char => ({
     "&": "&amp;",
     "<": "&lt;",
     ">": "&gt;",
@@ -456,16 +455,25 @@ function dateLabel(date) {
   return date ? date.replaceAll("-", ".") : "undated";
 }
 
+function normalizeSlug(value) {
+  return decodeURIComponent(String(value ?? ""))
+    .trim()
+    .toLowerCase()
+    .replace(/[_\s]+/g, "-");
+}
+
 function sectionSlug(section) {
   const found = sectionFolders.find(item => item.name === section);
 
   return found
-    ? found.slug
-    : String(section).toLowerCase().replaceAll(" ", "-");
+    ? normalizeSlug(found.slug)
+    : normalizeSlug(section);
 }
 
 function sectionFromSlug(slug) {
-  return sectionFolders.find(item => item.slug === slug)?.name || null;
+  const normalized = normalizeSlug(slug);
+
+  return sectionFolders.find(item => normalizeSlug(item.slug) === normalized)?.name || null;
 }
 
 function getPostById(id) {
@@ -769,14 +777,14 @@ function navigate(section) {
 
 function handleRoute() {
   const hash = window.location.hash || "#home";
+  const decodedHash = decodeURIComponent(hash);
+  const slug = decodedHash.slice(1) || "home";
 
-  if (hash.startsWith("#post-")) {
-    const id = decodeURIComponent(hash.slice("#post-".length));
+  if (slug.startsWith("post-")) {
+    const id = decodeURIComponent(slug.slice("post-".length));
     showArticle(id);
     return;
   }
-
-  const slug = hash.slice(1);
 
   if (slug === "home" || !slug) {
     navigate("home");
